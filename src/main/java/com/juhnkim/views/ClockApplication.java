@@ -1,61 +1,127 @@
 package com.juhnkim.views;
 
-import com.juhnkim.helper.StringFormatter;
-import com.juhnkim.models.Clock;
+import com.juhnkim.models.ClockStates;
 
 import java.util.Scanner;
 
 public class ClockApplication {
     Scanner scan = new Scanner(System.in);
-    String userInput = scan.nextLine();
-    Clock clock = new Clock();
-    StringFormatter sf = new StringFormatter();
-
-    public void runClockApp() {
+    String userInput = "";
+    ClockStates clockStates = new ClockStates();
 
 
-
-
-        while (userInput != "6") {
-
-
-            System.out.println("-- CLOCK -- \n " + "1. Display time \n" + "2. Display Date \n" + "6. Exit");
-
-            switch (userInput) {
-                case "1":
-                    clock.getLocalTime();
-
-                    break;
-                case "2":
-                    clock.getLocalDate();
-            }
-        }
+    public static void main(String[] args) {
+        ClockApplication ca = new ClockApplication();
+        ca.timeMenu();
     }
 
+    public void timeMenu() {
+        while (!userInput.equals("0")) {
+            System.out.println("------------------------------------------------------");
+            System.out.println("Current State: " + clockStates.getCurrentState());
+            System.out.println("------------------------------------------------------");
+            clockStates.set();
+            System.out.println("""
+                    -- CLOCK --\s
+                    1. Edit time\s
+                    2. Display Date\s
+                    0. Exit""");
 
-    public void clockMenu() {
-        while(userInput != "3") {
-            System.out.println("-- CLOCK -- \n " + "1. Edit time \n" + "2. Display Date \n" + "3. Back");
-
-            switch(userInput) {
+            userInput = scan.nextLine();
+            switch (userInput) {
                 case "1":
-                    System.out.println("Enter new time in the format: 'H:mm:ss'");
+                    System.out.println("Enter new time in the format: 'HH:mm'");
+                    userInput = scan.nextLine();
+                    clockStates.readyToSet(userInput);
+                    changeTimeMenu();
+                    break;
+                case "2":
+                    clockStates.changeMode();
+                    dateMenu();
+                    break;
+                case "0":
+                    System.out.println("Bye :(");
+                default:
+                    System.out.println("Invalid input");
             }
         }
     }
 
     public void dateMenu() {
-        while(userInput != "3") {
-            System.out.println("-- CLOCK -- \n " + "1. Edit date \n" + "2. Display Time \n" + "3. Back");
+        while (!userInput.equals("0")) {
+            System.out.println("------------------------------------------------------");
+            System.out.println("Current State: " + clockStates.getCurrentState());
+            System.out.println("------------------------------------------------------");
+            clockStates.set();
+            System.out.println("""
+                    -- CLOCK --\s
+                    1. Edit date\s
+                    2. Display Time\s
+                    0. Exit""");
 
-            switch(userInput) {
+            userInput = scan.nextLine();
+            switch (userInput) {
                 case "1":
-                    System.out.println("Enter new date in the format: 'dd-MM-yyyy'");
+                    System.out.println("Enter new date in the format: 'yyyy-MM-dd'");
+                    userInput = scan.nextLine();
+                    clockStates.readyToSet(userInput);
+                    changeDateMenu();
+                    break;
+                case "2":
+                    clockStates.changeMode();
+                    timeMenu();
+                case "0":
+                    System.out.println("Bye :(");
+                default:
+                    System.out.println("Invalid input");
             }
         }
-
-
     }
 
+    public void changeTimeMenu() {
+        while (!userInput.equals("0")) {
+            System.out.println("------------------------------------------------------");
+            System.out.println("Current State: " + clockStates.getCurrentState());
+            System.out.println("------------------------------------------------------");
+            System.out.println("""
+                    -- CLOCK --\s
+                    1. Display Time\s
+                    3. Exit""");
+
+            userInput = scan.nextLine();
+            switch(userInput) {
+                case "1" :
+                    timeMenu();
+                    break;
+                case "0":
+                    System.out.println("Bye :(");
+                default:
+                    System.out.println("Invalid input");
+            }
+        }
+    }
+
+    public void changeDateMenu() {
+        while (!userInput.equals("0")) {
+            System.out.println("------------------------------------------------------");
+            System.out.println("Current State: " + clockStates.getCurrentState());
+            System.out.println("------------------------------------------------------");
+            System.out.println("""
+                    -- CLOCK --\s
+                    1. Display Date\s
+                    0. Exit""");
+
+            userInput = scan.nextLine();
+            switch(userInput) {
+                case "1" :
+                    dateMenu();
+                    break;
+                case "0":
+                    System.out.println("Bye :(");
+                default:
+                    System.out.println("Invalid input");
+            }
+        }
+    }
 
 }

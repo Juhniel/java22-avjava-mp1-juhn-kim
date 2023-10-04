@@ -1,55 +1,33 @@
 package com.juhnkim.models;
 
-import com.juhnkim.interfaces.ActionInterface;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-public class Clock implements ActionInterface {
+public class Clock  {
 
     private LocalDate localDate;
     private LocalTime localTime;
-    private ClockState clockState;
-
 
     public Clock() {
-
+        this.localDate = LocalDate.now();
+        this.localTime = LocalTime.now();
     }
 
-    public Clock(LocalDate localDate, LocalTime localTime, ClockState clockState) {
-        this.localDate = localDate;
-        this.localTime = localTime;
+    public String getLocalDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return localDate.format(formatter);
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
-    public LocalTime getLocalTime() {
-        return localTime;
+    public String getLocalTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return "Current time: " + localTime.format(formatter);
     }
+
     public void setLocalTime(LocalTime localTime) {
         this.localTime = localTime;
-    }
-
-
-    @Override
-    public void changeMode() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void set() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void readyToSet() {
-        // TODO Auto-generated method stub
-
     }
 }
