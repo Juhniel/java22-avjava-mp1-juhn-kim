@@ -32,6 +32,7 @@ public class ClockApplication {
                 case "1":
                     System.out.println("Enter new time in the format: 'HH:mm'");
                     userInput = scan.nextLine();
+                    clockStates.setCurrentState(ClockStates.STATE.ChangeTime);
                     clockStates.readyToSet(userInput);
                     changeTimeMenu();
                     break;
@@ -64,6 +65,7 @@ public class ClockApplication {
                 case "1":
                     System.out.println("Enter new date in the format: 'yyyy-MM-dd'");
                     userInput = scan.nextLine();
+                    clockStates.setCurrentState(ClockStates.STATE.ChangeDate);
                     clockStates.readyToSet(userInput);
                     changeDateMenu();
                     break;
@@ -91,6 +93,8 @@ public class ClockApplication {
             userInput = scan.nextLine();
             switch(userInput) {
                 case "1" :
+                    // ändra logik?
+                    clockStates.setCurrentState(ClockStates.STATE.DisplayTime);
                     timeMenu();
                     break;
                 case "0":
@@ -114,6 +118,7 @@ public class ClockApplication {
             userInput = scan.nextLine();
             switch(userInput) {
                 case "1" :
+                    clockStates.setCurrentState(ClockStates.STATE.DisplayDate);
                     dateMenu();
                     break;
                 case "0":

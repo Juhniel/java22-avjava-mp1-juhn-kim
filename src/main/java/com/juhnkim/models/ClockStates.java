@@ -12,7 +12,7 @@ public class ClockStates implements ActionInterface {
         return currentState;
     }
 
-    private void setCurrentState(STATE currentState) {
+    public void setCurrentState(STATE currentState) {
         this.currentState = currentState;
     }
 
