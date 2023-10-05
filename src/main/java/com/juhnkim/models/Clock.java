@@ -1,11 +1,12 @@
 package com.juhnkim.models;
 
+import com.juhnkim.helpers.StringFormatter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
-public class Clock  {
-
+public class Clock {
+    private StringFormatter stringFormatter;
     private LocalDate localDate;
     private LocalTime localTime;
 
@@ -14,17 +15,19 @@ public class Clock  {
         this.localTime = LocalTime.now();
     }
 
-    public String getLocalDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return localDate.format(formatter);
+    public LocalDate getLocalDate() {
+
+        return localDate;
     }
 
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
-    public String getLocalTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return "Current time: " + localTime.format(formatter);
+
+    public LocalTime getLocalTime() {
+//        formatter = DateTimeFormatter.ofPattern("HH:mm");
+//        return "Current time: " + localTime.format(formatter);
+        return localTime;
     }
 
     public void setLocalTime(LocalTime localTime) {

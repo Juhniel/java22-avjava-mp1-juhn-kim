@@ -6,7 +6,13 @@ import com.juhnkim.interfaces.ActionInterface;
 public class ClockStates implements ActionInterface {
 
     private STATE currentState = STATE.DisplayTime;
-    private final Clock clock = new Clock();
+    private Clock clock;
+    private StringFormatter stringFormatter;
+
+    public ClockStates(Clock clock, StringFormatter stringFormatter) {
+        this.clock = clock;
+        this.stringFormatter = stringFormatter;
+    }
 
     public STATE getCurrentState() {
         return currentState;

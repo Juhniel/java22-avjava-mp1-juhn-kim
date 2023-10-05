@@ -6,13 +6,14 @@ import java.time.format.DateTimeFormatter;
 
 public class StringFormatter {
 
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     public LocalTime parseTime(String timeString) {
-        DateTimeFormatter parseFormat = DateTimeFormatter.ofPattern("HH:mm");
-        return LocalTime.parse(timeString, parseFormat);
+        return LocalTime.parse(timeString, TIME_FORMAT);
     }
 
     public LocalDate parseDate(String dateString) {
-        DateTimeFormatter parseFormat = DateTimeFormatter.ofPattern("yy-MM-dd");
-        return LocalDate.parse(dateString, parseFormat);
+        return LocalDate.parse(dateString, DATE_FORMAT);
     }
 }
